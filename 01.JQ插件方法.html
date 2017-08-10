@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			我想要大长腿。
+		</div>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			
+			$(function(){
+				
+//				var str=  " hello world   ";
+//				console.log($.trim(str));
+				
+				//给JQuery添加方法
+				$.extend({
+					leftTrim:function(str){
+						var reg = /^\s+/;
+						return str.replace(reg,"");
+					},
+					rightTrim:function(str){
+						var reg = /\s+$/;
+						return str.replace(reg,"");
+					}
+				});
+				
+				var str = "    你信不信？   ";
+				console.log(str);
+				console.log($.leftTrim(str));
+				console.log($.rightTrim(str));
+				
+				//给JQ对象添加方法
+				$.fn.extend({
+					highLight:function(){
+						var $this = this;
+						
+						//设置当前JQ对象的样式
+						$this.css({
+							"background-color":"yellow",
+							"color":"red"
+						});
+						
+						//将当前的JQ对象返回，为了形成链式操作
+						return $this;
+					}
+				})
+				
+				//设置div为高亮
+				$("div").highLight().css({"font-size":"50px"});
+				
+				//给JQ对象添加drag方法，实现拖拽效果
+				$("div").drag()
+			})
+		</script>
+	</body>
+</html>
